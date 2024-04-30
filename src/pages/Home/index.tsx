@@ -19,7 +19,10 @@ const Home = ({navigation}) => {
       <Gap height={44} />
       </View>
       <Gap height={5} />
-      <PageFooter label="footer"/>
+      <PageFooter label="footer"
+      profileButton
+      onPress={() => navigation.goBack()}
+      />
     </ScrollView>
   );
 };
