@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {BackButton, Logo} from '../../../assets/icon';
+import {Profile, Logo} from '../../../assets/icon';
 
 const Button = ({
   label,
@@ -15,7 +15,7 @@ const Button = ({
   if (type === 'icon-only') {
     return (
       <TouchableOpacity activeOpacity={0.7} onPress={onSubmit}>
-        {icon === 'back-button' && <BackButton />}
+        {icon === 'profile-button' && <Profile />}
         {icon === 'logo' && <Logo />}
       </TouchableOpacity>
     );

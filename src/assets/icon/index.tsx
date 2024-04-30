@@ -4,6 +4,6 @@ import BackButton from './BackButton.svg';
 // import Unklab from './Unklab.svg';
 import Unklab from './Unklab.png'
 import LogoUnklab from './logoUnklab.svg';
-import Vector from './Vector.svg'
+import Profile from './Profile.svg';
 
-export {Logo, BackButton, Unklab, LogoUnklab, Vector};
+export {Logo, BackButton, Unklab, LogoUnklab, Profile};

@@ -1,16 +1,17 @@
 /* eslint-disable prettier/prettier */
 import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
-import {BackButton} from '../../../assets/icon';
+import Profile from '../../../assets/icon/Profile.svg';
 import {Button} from '../../atoms';
-import Unklab from '../../../assets/images/Unklab.png';
 
-
-const PageFooter = ({label, backButton, onPress, type}) => {
+const PageFooter = ({label, onPress, type, profileButton}) => {
 
   return (
     <View style={styles.container}>
-     <Text style={styles.label}>
+      {profileButton && (
+        <Button type="icon-only" icon="profile-button" onSubmit={onPress} />
+      )}
+      <Text style={styles.label}>
       {label}
       </Text>
     </View>
