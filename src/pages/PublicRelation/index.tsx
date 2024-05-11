@@ -5,7 +5,7 @@ import {PageHeader, Gap, Button} from '../../components';
 import PageFooter from '../../components/molecules/PageFooter';
 import TextBox from '../../components/molecules/TextBox';
 
-const Home = ({navigation}) => {
+const PublicRelation = ({navigation}) => {
 
   const homeButtonStyle = {
     // backgroundColor: 'blue',
@@ -13,33 +13,25 @@ const Home = ({navigation}) => {
     borderRadius: 5,
     marginRight: 0,
     paddingLeft: 0,
-    marginHorizontal: 20,
+    marginHorizontal: 95,
     marginVertical: -10,
     paddingTop: 19,
     // opacity: 0.3
   }  
 
-  const profileButtonStyle = {
-    // backgroundColor: 'blue',
-    padding: 10,
-    borderRadius: 5,
-    marginRight: 0,
-    paddingLeft: 0,
-    marginHorizontal: -10,
-    marginVertical: -10,
-    opacity: 0.3
-
-  }  
-  const kalenderButtonStyle = {
-    // backgroundColor: 'red',
-    padding: 10,
-    borderRadius: 10,
-    marginVertical: -40,
-    marginHorizontal: 160,
-    marginRight: -190,
-    opacity: 0.3
-  };  
   const buttonStyle = {
+    backgroundColor: 'grey',
+    paddingVertical: 12,
+    borderRadius: 8,
+    width: 300,
+    marginLeft: 25,
+    marginTop: 0,
+    marginBottom: 20,
+    height: 300,
+    paddingTop: 18,
+    paddingBottom: 0,
+  }
+  const buttonStyle2 = {
     backgroundColor: 'red',
     paddingVertical: 12,
     borderRadius: 8,
@@ -47,6 +39,12 @@ const Home = ({navigation}) => {
     marginLeft: 130,
     marginTop: 0,
     marginBottom: 20,
+  }
+  const textButtonStyle = {
+    textAlign: 'center',
+    justifyContent: 'center',
+    fontSize: 40,
+    color: 'yellow',
   }
 
   return (
@@ -59,35 +57,29 @@ const Home = ({navigation}) => {
       <View style={styles.contentWrapper}>
       <Gap height={24} />
       <Text style={styles.textStyle}>
-        NEWS
+       PUBLIC RELATION CANDIDATE 
       </Text>
-      <Gap height={44} />
-      <TextBox/>
-      <TextBox/>
-      <TextBox/>
-      <TextBox/>
+      <Gap height={20} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="PRESIDENT" onSubmit={() => navigation.navigate('Home')} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="VICE PRESIDENT" onSubmit={() => navigation.navigate('Home')} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="SECRETARY" onSubmit={() => navigation.navigate('Home')} />
+
       <Gap height={15} />
-      <Button buttonStyle={buttonStyle}  label="Vote" onSubmit={() => navigation.navigate('Candidate')} />
+      <Button buttonStyle2={buttonStyle2}  label="Vote" onSubmit={() => navigation.navigate('')} />
       </View>
       </ScrollView>
       <Gap height={5} />
-      <PageFooter 
-      onPressProfile={() => navigation.navigate('Profile')}
-      OnPressKalender={() => navigation.navigate('Schedule')}
-      label="test"
-      profileButton={true}
-      kalenderButton={true}  
+      <PageFooter  
+      OnPressHome={() => navigation.navigate('Candidate')}
       homeButton={true}
       homeButtonStyle={homeButtonStyle}
-      kalenderButtonStyle={kalenderButtonStyle}
-      profileButtonStyle={profileButtonStyle}
       
       />
     </View>
   );
 };
 
-export default Home;
+export default PublicRelation;
 
 const styles = StyleSheet.create({
   container: {
@@ -108,7 +100,8 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 33,
     lineHeight: 49,
-    color: "#FFFFFF"
+    color: "#FFFFFF",
+    textAlign: 'center'
   },
   textStyle2: {
     fontFamily: 'Poppins-Medium',

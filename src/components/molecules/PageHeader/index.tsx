@@ -4,20 +4,18 @@ import React from 'react';
 import {BackButton} from '../../../assets/icon';
 import {Button} from '../../atoms';
 import Unklab from '../../../assets/images/Unklab.png';
+import LogoHeader from '../../../assets/icon/LogoHeader.png';
 
-
-const PageHeader = ({label, backButton, onPress, type}) => {
+const PageHeader = ({label, backButton, onPress, type, profileButton}) => {
 
   return (
     <View style={styles.container}>
-      {backButton && (
-        <Button type="icon-only" icon="back-button" onSubmit={onPress} />
-      )}
-      <Text style={styles.label}>
-      <Image source={Unklab} style={styles.imageStyle}/> {''}
-      {label}
-      </Text>
+      
+      <Image source={Unklab} style={styles.imageStyle}/>
+      
+      <Text style={styles.labell}>{label}</Text>
     </View>
+
   );
 };
 
@@ -33,43 +31,37 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   container: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: '#A109C7',
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 80,
+    paddingBottom: 0,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 0,
-    
+ 
   },
-  label: {
+  labell: {
     fontFamily: 'Poppins',
     color: '#FFFFFF', 
     fontWeight: '700', 
     textAlign:'center',
-    lineHeight: 22,
-    fontSize: 35,
+    fontSize: 30,
+    marginTop: -80,
     marginLeft: 10,
-    marginTop: 0,
-    
-  },
-  appTitle: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 22,
-    color: '#020202',
-  },
-  appSubTitle: {
-    fontFamily: 'Poppins-Light',
-    fontSize: 14,
-    color: '#8D92A3',
+  
   },
   imageStyle: {
     width: 60, 
-    height: 40,
+    height: 50,
     resizeMode: 'stretch',
     alignItems: 'center',
-    marginBottom: 50,
-    marginTop: 10,
+    marginBottom: 0,
+    paddingBottom: 0,
+    paddingTop: -100,
+    marginTop: -80,
+    marginLeft: 10
+  
+    
     
    },
 });
