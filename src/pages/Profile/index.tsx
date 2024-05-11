@@ -5,7 +5,7 @@ import {PageHeader, Gap, Button} from '../../components';
 import PageFooter from '../../components/molecules/PageFooter';
 import TextBox from '../../components/molecules/TextBox';
 
-const Home = ({navigation}) => {
+const Profile = ({navigation}) => {
 
   const homeButtonStyle = {
     // backgroundColor: 'blue',
@@ -13,41 +13,40 @@ const Home = ({navigation}) => {
     borderRadius: 5,
     marginRight: 0,
     paddingLeft: 0,
-    marginHorizontal: 20,
+    marginHorizontal: -225,
     marginVertical: -10,
     paddingTop: 19,
-    // opacity: 0.3
+    opacity: 0.3
   }  
-
+  const customContainerStyle = {
+    flex: 1,
+    backgroundColor: '#A109C7',
+    paddingTop: 30,
+    paddingBottom: 40,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 70,
+    marginTop: 5, 
+  }
+  const textBoxStyle = {
+    backgroundColor: 'grey',
+        borderRadius: 8,
+        padding: 5,
+        marginBottom: 10,
+        borderWidth: 1,
+        paddingBottom: 500,
+        marginTop: -20,
+    
+  }
   const profileButtonStyle = {
     // backgroundColor: 'blue',
     padding: 10,
     borderRadius: 5,
     marginRight: 0,
     paddingLeft: 0,
-    marginHorizontal: -10,
+    marginHorizontal: 190,
     marginVertical: -10,
-    opacity: 0.3
-
-  }  
-  const kalenderButtonStyle = {
-    // backgroundColor: 'red',
-    padding: 10,
-    borderRadius: 10,
-    marginVertical: -40,
-    marginHorizontal: 160,
-    marginRight: -190,
-    opacity: 0.3
-  };  
-  const buttonStyle = {
-    backgroundColor: 'red',
-    paddingVertical: 12,
-    borderRadius: 8,
-    width: 80,
-    marginLeft: 130,
-    marginTop: 0,
-    marginBottom: 20,
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -59,35 +58,28 @@ const Home = ({navigation}) => {
       <View style={styles.contentWrapper}>
       <Gap height={24} />
       <Text style={styles.textStyle}>
-        NEWS
+        PROFILE
       </Text>
       <Gap height={44} />
-      <TextBox/>
-      <TextBox/>
-      <TextBox/>
-      <TextBox/>
-      <Gap height={15} />
-      <Button buttonStyle={buttonStyle}  label="Vote" onSubmit={() => navigation.navigate('Candidate')} />
+      <TextBox
+      textBoxStyle={textBoxStyle}
+      />
+      <Gap height={42} />
       </View>
       </ScrollView>
-      <Gap height={5} />
       <PageFooter 
-      onPressProfile={() => navigation.navigate('Profile')}
-      OnPressKalender={() => navigation.navigate('Schedule')}
-      label="test"
-      profileButton={true}
-      kalenderButton={true}  
+      OnPressHome={() => navigation.navigate('Home')}
       homeButton={true}
+      profileButton={true}
       homeButtonStyle={homeButtonStyle}
-      kalenderButtonStyle={kalenderButtonStyle}
+      containerStyle={customContainerStyle}
       profileButtonStyle={profileButtonStyle}
-      
       />
     </View>
   );
 };
 
-export default Home;
+export default Profile;
 
 const styles = StyleSheet.create({
   container: {
@@ -108,7 +100,8 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 33,
     lineHeight: 49,
-    color: "#FFFFFF"
+    color: "#FFFFFF",
+    textAlign: 'center'
   },
   textStyle2: {
     fontFamily: 'Poppins-Medium',

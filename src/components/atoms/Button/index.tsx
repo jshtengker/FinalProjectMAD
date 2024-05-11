@@ -1,31 +1,40 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {Profile, Logo} from '../../../assets/icon';
+import {Profile, Logo, Kalender, Home, BackButton} from '../../../assets/icon';
 
 const Button = ({
+  style,
   label,
   backgroundColor = '#02CF8E',
   textColor = '#020202',
   onSubmit,
   type,
   icon,
+  buttonStyle,
+  textButtonStyle,
+  buttonStyle2
  
 }) => {
   if (type === 'icon-only') {
     return (
-      <TouchableOpacity activeOpacity={0.7} onPress={onSubmit}>
+      <TouchableOpacity style={style} activeOpacity={0.7} onPress={onSubmit}>
         {icon === 'profile-button' && <Profile />}
         {icon === 'logo' && <Logo />}
+        {icon === 'kalender-button' && <Kalender />}
+        {icon === 'home-button' && <Home />}
+        {icon === 'back-button' && <BackButton />}
+
+
       </TouchableOpacity>
     );
   }
   return (
     <TouchableOpacity
-      style={styles.container(backgroundColor)}
+      style={[styles.container(backgroundColor), buttonStyle, buttonStyle2]}
       activeOpacity={0.7}
       onPress={onSubmit}>
-      <Text style={styles.label(textColor)}>{label}</Text>
+      <Text style={[styles.label(textColor), textButtonStyle]}>{label}</Text>
     </TouchableOpacity>
   );
 };
@@ -37,11 +46,14 @@ const styles = StyleSheet.create({
     backgroundColor: backgroundColor,
     paddingVertical: 12,
     borderRadius: 8,
-    width: 150,
-    marginLeft: 13,
+    width: 80,
+    marginLeft: 130,
+    marginTop: 0,
+    marginBottom: 20,
   }),
   label: textColor => ({
     textAlign: 'center',
     color: textColor,
+    fontSize: 20
   }),
 });
