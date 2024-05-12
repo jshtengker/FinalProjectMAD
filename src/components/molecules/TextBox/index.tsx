@@ -1,12 +1,15 @@
+/* eslint-disable prettier/prettier */
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const TextBox = ({textBoxStyle, label, textStyleCandidate}) => {
+const TextBox = ({textBoxStyle, nama, textStyleCandidate, fakultas, nim, namaStyle, fakultasStyle, nimStyle}) => {
   
 
   return (
     <View style ={[styles.box, textBoxStyle]}>
-      <Text style={[textStyleCandidate]}>{label}</Text>
+      <Text style={namaStyle}>{nama}</Text>
+      <Text style={fakultasStyle}>{fakultas}</Text>
+      <Text style={nimStyle}>{nim}</Text>
     </View>
   )
 }

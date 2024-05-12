@@ -1,28 +1,33 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {SplashScreen, Login, Home, Profile, Schedule, Candidate, President, VicePresident, Secretary, Treasurer, Parlementary, Sport, Health, Spiritual, EditorGema, PublicRelation, Agriculture, Education} from '../pages';
+import {SplashScreen, Login, Home, Profile, Schedule, Candidate, President, VicePresident, Secretary, Treasurer, Parlementary, Sport, Health, Spiritual, EditorGema, PublicRelation, Agriculture, Education, SignUp} from '../pages';
 
 const Stack = createNativeStackNavigator();
 const index = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen
+      {/* <Stack.Screen
         name="SplashScreen"
         component={SplashScreen}
         options={{headerShown: false}}
-      />
+      /> */}
       <Stack.Screen
         name="Login"
         component={Login}
         options={{headerShown: false}}
       />
+      {/* <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{headerShown: false}}
+      /> */}
       <Stack.Screen
         name="Home"
         component={Home}
         options={{headerShown: false}}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Profile"
         component={Profile}
         options={{headerShown: false}}
@@ -31,7 +36,7 @@ const index = () => {
         name="Schedule"
         component={Schedule}
         options={{headerShown: false}}
-      />
+      /> */}
       <Stack.Screen
         name="Candidate"
         component={Candidate}

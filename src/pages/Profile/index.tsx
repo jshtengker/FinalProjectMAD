@@ -1,11 +1,31 @@
 /* eslint-disable prettier/prettier */
 import {StyleSheet, Text, View, ScrollView, TextInput, ScrollViewBase} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {PageHeader, Gap, Button} from '../../components';
 import PageFooter from '../../components/molecules/PageFooter';
 import TextBox from '../../components/molecules/TextBox';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
-const Profile = ({navigation}) => {
+const Profile = ({navigation, route}) => {
+  const {uid} = route.params;
+  const [user, setUser] = useState({})
+  const [nama, setNama] = useState('')
+  const [nim, setNim] = useState('0')
+  const [fakultas, setFakultas] = useState('')
+  const db = getDatabase();
+
+  useEffect(() => {
+    const userRef = ref(db, 'users/' + uid);
+    onValue(userRef, snapshot => {
+      if(snapshot.exists()){
+        const data = snapshot.val();
+        setUser(data)
+        setNama(data.userProfile.nama)
+        setNim(data.userProfile.nim)
+        setFakultas(data.userProfile.fakultas)
+      }
+    });
+  }, [])
 
   const homeButtonStyle = {
     // backgroundColor: 'blue',
@@ -47,6 +67,9 @@ const Profile = ({navigation}) => {
     marginHorizontal: 190,
     marginVertical: -10,
   };
+  const namaStyle = {
+    color: 'white'
+  }
 
   return (
     <View style={styles.container}>
@@ -63,12 +86,16 @@ const Profile = ({navigation}) => {
       <Gap height={44} />
       <TextBox
       textBoxStyle={textBoxStyle}
+      nama={nama}
+      fakultas={fakultas}
+      nim={nim}
+      namaStyle={namaStyle}
       />
       <Gap height={42} />
       </View>
       </ScrollView>
       <PageFooter 
-      OnPressHome={() => navigation.navigate('Home')}
+      OnPressHome={() => navigation.navigate('Home', {uid:uid})}
       homeButton={true}
       profileButton={true}
       homeButtonStyle={homeButtonStyle}

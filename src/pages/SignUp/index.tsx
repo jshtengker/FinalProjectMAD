@@ -1,33 +1,56 @@
 /* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {ScrollView, StyleSheet, View, Text, Image} from 'react-native';
 import {Button, Gap, PageHeader, TextInput} from '../../components';
 import Unklab from '../../assets/images/Unklab.png';
+import { useSafeAreaFrame } from 'react-native-safe-area-context';
 // import { Image } from 'react-native-svg';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
 import { showMessage } from 'react-native-flash-message';
+import { getDatabase, ref, set } from "firebase/database";
 
 
-const Login = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const SignUp = ({navigation}) => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
-  const onSubmit = () => {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(userCredential => {
-      // Signed in 
-      const user = userCredential.user;
-      navigation.navigate('Home', {uid: user.uid});
-    })
-    .catch(error => {
-      const errorMessage = error.message;
-      showMessage({
-        message: errorMessage,
-        type: 'danger',
-      })
-    });
-  }
+    const onSubmit = () => {
+        const data = {
+            email: email,
+            // password: password,
+        };
+
+        const userProfile = {
+            nama: 'null',
+            nim: 0,
+            fakultas: 'null'
+        };
+
+        const auth = getAuth();
+        const db = getDatabase();
+        createUserWithEmailAndPassword(auth, email, password)
+         .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+            // simpan ke dalam realtime database
+            set(ref(db, 'users/' + user.uid), data);
+            set(ref(db, 'users/' + user.uid + '/userProfile'), userProfile);
+            showMessage({
+                message: 'Registration Success',
+                type: 'success',
+            });
+            navigation.navigate('Login');
+            // console.log(user)
+        })
+         .catch(error => {
+            // const errorCode = error.code;
+            const errorMessage = error.message;
+            showMessage({
+                message: errorMessage,
+                type: 'danger',
+            });
+        });
+    };
 
   return (
     <ScrollView style={styles.container}>
@@ -49,32 +72,20 @@ const Login = ({navigation}) => {
         <TextInput
           label="EMAIL ADDRESS"
           placeholder="Type your email address"
-          value={email}
-          onChangeText={value => setEmail(value)}
+          value={email} onChangeText={value => setEmail(value)}
         />
         <Gap height={16} />
-        <TextInput 
-        label="PASSWORD" 
-        placeholder="Type your password"
-        value={password}
-        onChangeText={value => setPassword(value)}
-        secureTextEntry={true}
-        />
+        <TextInput label="PASSWORD" placeholder="Type your password"
+        value={password} onChangeText={value => setPassword(value)} secureTextEntry={true} />
         <Gap height={24} />
-        <Button label="Login" onSubmit={onSubmit} />
+        <Button label="Create Account" onSubmit={onSubmit} />
         <Gap height={12} />
-        <Button
-          label="Create New Account"
-          backgroundColor="#8D92A3"
-          textColor="#FFFFFF"
-          onSubmit={() => navigation.navigate('SignUp')}
-        />
       </View>
     </ScrollView>
   );
 };
 
-export default Login;
+export default SignUp;
 
 const styles = StyleSheet.create({
   container: {

@@ -17,5 +17,6 @@ import EditorGema from './EditorGema';
 import PublicRelation from './PublicRelation';
 import Agriculture from './Agriculture';
 import Education from './Education';
+import SignUp from './SignUp';
 
-export {SplashScreen, Login, Profile, Home, Schedule, Candidate, President, VicePresident, Secretary, Treasurer, Parlementary, Sport, Health, Spiritual, EditorGema, PublicRelation, Agriculture, Education};
+export {SplashScreen, Login, Profile, Home, Schedule, Candidate, President, VicePresident, Secretary, Treasurer, Parlementary, Sport, Health, Spiritual, EditorGema, PublicRelation, Agriculture, Education, SignUp};

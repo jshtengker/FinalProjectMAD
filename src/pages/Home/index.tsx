@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
 import {StyleSheet, Text, View, ScrollView, TextInput, ScrollViewBase} from 'react-native';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {PageHeader, Gap, Button} from '../../components';
 import PageFooter from '../../components/molecules/PageFooter';
 import TextBox from '../../components/molecules/TextBox';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
-const Home = ({navigation}) => {
+const Home = ({navigation, route}) => {
+  const {uid} = route.params;
 
   const homeButtonStyle = {
     // backgroundColor: 'blue',
@@ -67,13 +69,13 @@ const Home = ({navigation}) => {
       <TextBox/>
       <TextBox/>
       <Gap height={15} />
-      <Button buttonStyle={buttonStyle}  label="Vote" onSubmit={() => navigation.navigate('Candidate')} />
+      <Button buttonStyle={buttonStyle}  label="Vote" onSubmit={() => navigation.navigate('Candidate', {uid:uid})} />
       </View>
       </ScrollView>
       <Gap height={5} />
       <PageFooter 
-      onPressProfile={() => navigation.navigate('Profile')}
-      OnPressKalender={() => navigation.navigate('Schedule')}
+      onPressProfile={() => navigation.navigate('Profile', {uid: uid})}
+      OnPressKalender={() => navigation.navigate('Schedule', {uid: uid})}
       label="test"
       profileButton={true}
       kalenderButton={true}  

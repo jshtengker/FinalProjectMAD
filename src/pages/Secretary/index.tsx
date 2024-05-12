@@ -5,7 +5,8 @@ import {PageHeader, Gap, Button} from '../../components';
 import PageFooter from '../../components/molecules/PageFooter';
 import TextBox from '../../components/molecules/TextBox';
 
-const Secretary = ({navigation}) => {
+const Secretary = ({navigation, route}) => {
+  const {uid} = route.params;
 
   const homeButtonStyle = {
     // backgroundColor: 'blue',
@@ -69,7 +70,7 @@ const Secretary = ({navigation}) => {
       </ScrollView>
       <Gap height={5} />
       <PageFooter  
-      OnPressHome={() => navigation.navigate('Home')}
+      OnPressHome={() => navigation.navigate('Candidate', {uid:uid})}
       homeButton={true}
       homeButtonStyle={homeButtonStyle}
       

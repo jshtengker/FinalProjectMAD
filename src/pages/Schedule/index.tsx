@@ -5,7 +5,8 @@ import {PageHeader, Gap, Button} from '../../components';
 import PageFooter from '../../components/molecules/PageFooter';
 import TextBox from '../../components/molecules/TextBox';
 
-const Schedule = ({navigation}) => {
+const Schedule = ({navigation, route}) => {
+  const {uid} = route.params 
 
   const homeButtonStyle = {
     // backgroundColor: 'blue',
@@ -80,7 +81,7 @@ const Schedule = ({navigation}) => {
       </ScrollView>
       {/* <Gap height={0} /> */}
       <PageFooter 
-      OnPressHome={() => navigation.navigate('Home')}
+      OnPressHome={() => navigation.navigate('Home', {uid:uid})}
       homeButton={true}
       kalenderButton={true}
       kalenderButtonStyle={kalenderButtonStyle}

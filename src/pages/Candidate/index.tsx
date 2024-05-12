@@ -5,7 +5,8 @@ import {PageHeader, Gap, Button} from '../../components';
 import PageFooter from '../../components/molecules/PageFooter';
 import TextBox from '../../components/molecules/TextBox';
 
-const Candidate = ({navigation}) => {
+const Candidate = ({navigation, route}) => {
+  const {uid} = route.params;
 
   const homeButtonStyle = {
     // backgroundColor: 'blue',
@@ -50,25 +51,25 @@ const Candidate = ({navigation}) => {
         CANDIDATE
       </Text>
       <Gap height={20} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="PRESIDENT" onSubmit={() => navigation.navigate('President')} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="VICE PRESIDENT" onSubmit={() => navigation.navigate('VicePresident')} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="SECRETARY" onSubmit={() => navigation.navigate('Secretary')} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="TREASURER" onSubmit={() => navigation.navigate('Treasurer')} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="PARLEMENTARY" onSubmit={() => navigation.navigate('Parlementary')} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="SPORT" onSubmit={() => navigation.navigate('Sport')} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="HEALTH" onSubmit={() => navigation.navigate('Health')} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="SPIRITUAL" onSubmit={() => navigation.navigate('Spiritual')} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="EDITOR GEMA" onSubmit={() => navigation.navigate('EditorGema')} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="AGRICULTURE" onSubmit={() => navigation.navigate('Argiculture')} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="PUBLIC RELATION" onSubmit={() => navigation.navigate('PublicRelation')} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="EDUCATION" onSubmit={() => navigation.navigate('Education')} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="PRESIDENT" onSubmit={() => navigation.navigate('President', {uid:uid})} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="VICE PRESIDENT" onSubmit={() => navigation.navigate('VicePresident', {uid:uid})} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="SECRETARY" onSubmit={() => navigation.navigate('Secretary', {uid:uid})} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="TREASURER" onSubmit={() => navigation.navigate('Treasurer', {uid:uid})} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="PARLEMENTARY" onSubmit={() => navigation.navigate('Parlementary', {uid:uid})} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="SPORT" onSubmit={() => navigation.navigate('Sport', {uid:uid})} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="HEALTH" onSubmit={() => navigation.navigate('Health', {uid:uid})} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="SPIRITUAL" onSubmit={() => navigation.navigate('Spiritual', {uid:uid})} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="EDITOR GEMA" onSubmit={() => navigation.navigate('EditorGema', {uid:uid})} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="AGRICULTURE" onSubmit={() => navigation.navigate('Argiculture', {uid:uid})} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="PUBLIC RELATION" onSubmit={() => navigation.navigate('PublicRelation', {uid:uid})} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="EDUCATION" onSubmit={() => navigation.navigate('Education', {uid:uid})} />
    
       <Gap height={15} />
       </View>
       </ScrollView>
       <Gap height={5} />
       <PageFooter  
-      OnPressHome={() => navigation.navigate('Home')}
+      OnPressHome={() => navigation.navigate('Home', {uid:uid})}
       homeButton={true}
       homeButtonStyle={homeButtonStyle}
       

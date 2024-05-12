@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
-import {StyleSheet, Text, View, ScrollView, TextInput, ScrollViewBase} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, ScrollViewBase} from 'react-native';
 import React from 'react';
-import {PageHeader, Gap, Button} from '../../components';
+import {PageHeader, Gap, Button, TextInput} from '../../components';
 import PageFooter from '../../components/molecules/PageFooter';
 import TextBox from '../../components/molecules/TextBox';
 
-const President = ({navigation}) => {
+const President = ({navigation, route}) => {
+  const {uid} = route.params;
 
   const homeButtonStyle = {
     // backgroundColor: 'blue',
@@ -71,16 +72,20 @@ const President = ({navigation}) => {
         PRESIDENT CANDIDATE 
       </Text>
       <Gap height={20} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="PRESIDENT" onSubmit={() => navigation.navigate('Home')} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="PRESIDENT" onSubmit={() => navigation.navigate('Home', {uid:uid})} />
       <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="VICE PRESIDENT" onSubmit={() => navigation.navigate('Home')} />
       <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="SECRETARY" onSubmit={() => navigation.navigate('Home')} />
       <Gap height={15} />
+      <TextInput
+          label="Nama Kandidat"
+          placeholder="Masukkan nama kandidat"
+        />
       <Button buttonStyle2={buttonStyle2}  label="Vote" onSubmit={() => navigation.navigate('')} />
       </View>
       </ScrollView>
       <Gap height={5} />
       <PageFooter  
-      OnPressHome={() => navigation.navigate('Candidate')}
+      OnPressHome={() => navigation.navigate('Candidate', {uid:uid})}
       OnPressBack={() => navigation.navigate('Candidate')}
 
       homeButton={true}

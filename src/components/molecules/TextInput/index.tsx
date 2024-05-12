@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
-import {StyleSheet, Text, View, TextInput as Input} from 'react-native';
+import {StyleSheet, Text, View, TextInput as Input, registerCallableModule} from 'react-native';
 import React from 'react';
 
-const TextInput = ({label, placeholder}) => {
+const TextInput = ({label, placeholder, ...rest}) => {
   return (
     <View>
       <Text style={styles.label}>{label}</Text>
-      <Input style={styles.textInput} placeholder={placeholder} />
+      <Input style={styles.textInput} placeholder={placeholder} {...rest} />
     </View>
   );
 };
