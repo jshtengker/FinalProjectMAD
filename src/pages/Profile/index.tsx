@@ -1,13 +1,31 @@
 /* eslint-disable prettier/prettier */
 import {StyleSheet, Text, View, ScrollView, TextInput, ScrollViewBase} from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {PageHeader, Gap, Button} from '../../components';
 import PageFooter from '../../components/molecules/PageFooter';
 import TextBox from '../../components/molecules/TextBox';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
-const Home = ({navigation, route}) => {
+const Profile = ({navigation, route}) => {
   const {uid} = route.params;
+  const [user, setUser] = useState({})
+  const [nama, setNama] = useState('')
+  const [nim, setNim] = useState('0')
+  const [fakultas, setFakultas] = useState('')
+  const db = getDatabase();
+
+  useEffect(() => {
+    const userRef = ref(db, 'users/' + uid);
+    onValue(userRef, snapshot => {
+      if(snapshot.exists()){
+        const data = snapshot.val();
+        setUser(data)
+        setNama(data.userProfile.nama)
+        setNim(data.userProfile.nim)
+        setFakultas(data.userProfile.fakultas)
+      }
+    });
+  }, [])
 
   const homeButtonStyle = {
     // backgroundColor: 'blue',
@@ -15,40 +33,42 @@ const Home = ({navigation, route}) => {
     borderRadius: 5,
     marginRight: 0,
     paddingLeft: 0,
-    marginHorizontal: 20,
+    marginHorizontal: -225,
     marginVertical: -10,
     paddingTop: 19,
-    // opacity: 0.3
+    opacity: 0.3
   }  
-
+  const customContainerStyle = {
+    flex: 1,
+    backgroundColor: '#A109C7',
+    paddingTop: 30,
+    paddingBottom: 40,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 70,
+    marginTop: 5, 
+  }
+  const textBoxStyle = {
+    backgroundColor: 'grey',
+        borderRadius: 8,
+        padding: 5,
+        marginBottom: 10,
+        borderWidth: 1,
+        paddingBottom: 500,
+        marginTop: -20,
+    
+  }
   const profileButtonStyle = {
     // backgroundColor: 'blue',
     padding: 10,
     borderRadius: 5,
     marginRight: 0,
     paddingLeft: 0,
-    marginHorizontal: -10,
+    marginHorizontal: 190,
     marginVertical: -10,
-    opacity: 0.3
-
-  }  
-  const kalenderButtonStyle = {
-    // backgroundColor: 'red',
-    padding: 10,
-    borderRadius: 10,
-    marginVertical: -40,
-    marginHorizontal: 160,
-    marginRight: -190,
-    opacity: 0.3
-  };  
-  const buttonStyle = {
-    backgroundColor: 'red',
-    paddingVertical: 12,
-    borderRadius: 8,
-    width: 80,
-    marginLeft: 130,
-    marginTop: 0,
-    marginBottom: 20,
+  };
+  const namaStyle = {
+    color: 'white'
   }
 
   return (
@@ -61,35 +81,32 @@ const Home = ({navigation, route}) => {
       <View style={styles.contentWrapper}>
       <Gap height={24} />
       <Text style={styles.textStyle}>
-        NEWS
+        PROFILE
       </Text>
       <Gap height={44} />
-      <TextBox/>
-      <TextBox/>
-      <TextBox/>
-      <TextBox/>
-      <Gap height={15} />
-      <Button buttonStyle={buttonStyle}  label="Vote" onSubmit={() => navigation.navigate('Candidate', {uid:uid})} />
+      <TextBox
+      textBoxStyle={textBoxStyle}
+      nama={nama}
+      fakultas={fakultas}
+      nim={nim}
+      namaStyle={namaStyle}
+      />
+      <Gap height={42} />
       </View>
       </ScrollView>
-      <Gap height={5} />
       <PageFooter 
-      onPressProfile={() => navigation.navigate('Profile', {uid: uid})}
-      OnPressKalender={() => navigation.navigate('Schedule', {uid: uid})}
-      label="test"
-      profileButton={true}
-      kalenderButton={true}  
+      OnPressHome={() => navigation.navigate('Home', {uid:uid})}
       homeButton={true}
+      profileButton={true}
       homeButtonStyle={homeButtonStyle}
-      kalenderButtonStyle={kalenderButtonStyle}
+      containerStyle={customContainerStyle}
       profileButtonStyle={profileButtonStyle}
-      
       />
     </View>
   );
 };
 
-export default Home;
+export default Profile;
 
 const styles = StyleSheet.create({
   container: {
@@ -110,7 +127,8 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 33,
     lineHeight: 49,
-    color: "#FFFFFF"
+    color: "#FFFFFF",
+    textAlign: 'center'
   },
   textStyle2: {
     fontFamily: 'Poppins-Medium',

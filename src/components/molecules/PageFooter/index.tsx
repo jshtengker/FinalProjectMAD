@@ -4,16 +4,26 @@ import React from 'react';
 import Profile from '../../../assets/icon/Profile.svg';
 import {Button} from '../../atoms';
 
-const PageFooter = ({label, onPress, type, profileButton}) => {
-
+const PageFooter = ({label, onPressProfile, OnPressKalender, OnPressHome, type, profileButton, kalenderButton, profileButtonStyle, kalenderButtonStyle, homeButton, homeButtonStyle, containerStyle, backButton}) => {
+  
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       {profileButton && (
-        <Button type="icon-only" icon="profile-button" onSubmit={onPress} />
+        <Button type="icon-only" icon="profile-button" onSubmit={onPressProfile} style={profileButtonStyle}/>
       )}
-      <Text style={styles.label}>
-      {label}
-      </Text>
+      
+      {kalenderButton &&  (
+        <Button type="icon-only" icon="kalender-button" onSubmit={OnPressKalender} style={kalenderButtonStyle} />
+      )}
+
+      {homeButton &&  (
+        <Button type="icon-only" icon="home-button" onSubmit={OnPressHome} style={homeButtonStyle} />
+      )}
+
+      {backButton &&  (
+        <Button type="icon-only" icon="back-button" onSubmit={OnPressBack} style={backButtonStyle} />
+      )}
+    
     </View>
   );
 };
@@ -32,19 +42,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#A109C7',
-    paddingTop: 0,
-    paddingBottom: 10,
+    paddingTop: 40,
+    paddingBottom: 40,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 0,
-    height: 90,
-
+    paddingHorizontal: 70,
+    
+  },
+  container1: {
+    flex: 1,
+    backgroundColor: '#A109C7',
+    paddingTop: 40,
+    paddingBottom: 40,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 70,
+    
   },
   label: {
     fontFamily: 'Poppins-Medium',
-    fontSize: 22,
-    color: '#020202',
-    marginLeft: 26,
+    fontSize: 20,
+    color: 'white',
+    marginLeft: 0,
+    backgroundColor: 'black',
+    padding: 10,
   },
   appTitle: {
     fontFamily: 'Poppins-Medium',
