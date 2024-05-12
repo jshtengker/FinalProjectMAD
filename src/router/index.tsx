@@ -12,7 +12,7 @@ const index = () => {
         component={SplashScreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Login"
         component={Login}
         options={{headerShown: false}}
@@ -96,7 +96,7 @@ const index = () => {
         name="Education"
         component={Education}
         options={{headerShown: false}}
-      />
+      /> */}
     </Stack.Navigator>
     
   );

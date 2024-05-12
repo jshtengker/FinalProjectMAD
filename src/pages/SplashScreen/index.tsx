@@ -12,7 +12,7 @@ const SplashScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Unklab style={styles.logo}/>
-      <Text style={styles.text}>U - PILIHAN</Text>
+      <Text style={styles.text}>U-PIL</Text>
     </View>
   );
 };
@@ -26,13 +26,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     
+    
   },
   text: {
     fontSize: 32,
     fontFamily: 'Poppins-Medium',
+
   },
   logo: {
-    marginLeft: 100,
+    marginLeft: 200,
+    
+    
     
   }
 });
