@@ -2,7 +2,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const TextBox = ({textBoxStyle, nama, textStyleCandidate, fakultas, nim, namaStyle, fakultasStyle, nimStyle}) => {
+const TextBox = ({textBoxStyle, nama, textStyleCandidate, fakultas, nim, namaStyle, fakultasStyle, nimStyle, children, label, news1Style, label1, news2Style, label2, news3Style, label3,news4Style}) => {
   
 
   return (
@@ -10,7 +10,15 @@ const TextBox = ({textBoxStyle, nama, textStyleCandidate, fakultas, nim, namaSty
       <Text style={namaStyle}>{nama}</Text>
       <Text style={fakultasStyle}>{fakultas}</Text>
       <Text style={nimStyle}>{nim}</Text>
+      <Text style={news1Style}>{label}</Text>
+      <Text style={news2Style}>{label1}</Text>
+      <Text style={news3Style}>{label2}</Text>
+      <Text style={news4Style}>{label3}</Text>
+
+
+      {children}
     </View>
+    
   )
 }
 

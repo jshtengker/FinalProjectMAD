@@ -35,15 +35,16 @@ const Login = ({navigation}) => {
         <Text style={styles.title}>
         <Image source={Unklab} style={styles.imageStyle}/> {''}U - PILIHAN
         </Text>
+        <Gap height={25} />
         <Text style={styles.head}>
           SISTEM PEMILIHAN ANGGOTA{'\n'}
-          <Gap height={15} />
+          <Gap height={20} />
           BADAN EKSEKUTIF MAHASISWA (BEM){'\n'}
-          <Gap height={15} />
+          <Gap height={20} />
           UNIVERSTIAS KLABAT
           </Text>
       </View>
-      <Gap height={140} />
+      <Gap height={80} />
       <View style={styles.contentWrapper}>
         <Gap height={24} />
         <TextInput
@@ -92,23 +93,23 @@ const styles = StyleSheet.create({
     fontWeight: '700', 
     textAlign:'center',
     lineHeight: 52,
-    fontSize: 35,
-    marginTop: 33,
+    fontSize: 50,
+    marginTop: 70,
   },
   head: {
     fontFamily: 'Poppins',
     color: '#FFFFFF',
     textAlign:'center',
-    fontSize: 13,
+    fontSize: 20,
     fontWeight: '500',
     marginTop: 12,
   },
   imageStyle: {
    width: 60, 
    height: 50,
-   resizeMode: 'stretch',
-   alignItems: 'center',
-   marginBottom: 50,
+   resizeMode: 'contain',
+  //  alignItems: 'center',
+   marginBottom: 100,
    marginTop: 100,
   },
   buttonStyle: {

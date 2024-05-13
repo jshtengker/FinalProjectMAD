@@ -2,7 +2,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 // import LogoUnklab from '../../assets/icon/logoUnklab.svg'
-import Unklab from '../../assets/icon/Unklab.svg'
+import Unklab from '../../assets/icon/LogoUnklab.svg'
 
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
@@ -11,8 +11,8 @@ const SplashScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Unklab style={styles.logo}/>
-      <Text style={styles.text}>U - PILIHAN</Text>
+      <Unklab width={300} height={300} style={styles.logo}/>
+      <Text style={styles.text}>U-PIL</Text>
     </View>
   );
 };
@@ -30,9 +30,12 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 32,
     fontFamily: 'Poppins-Medium',
+    marginBottom: 80
+
   },
   logo: {
-    marginLeft: 100,
-    
+    marginLeft: 5,
+    marginBottom: 30,
+    resizeMode: 'contain'
   }
 });

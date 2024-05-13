@@ -1,12 +1,33 @@
 /* eslint-disable prettier/prettier */
 import {StyleSheet, Text, View, ScrollView, TextInput, ScrollViewBase} from 'react-native';
-import React from 'react';
-import {PageHeader, Gap, Button} from '../../components';
+import React, {useEffect, useState} from 'react';
+import {PageHeader, Gap, Button, PlainText} from '../../components';
 import PageFooter from '../../components/molecules/PageFooter';
 import TextBox from '../../components/molecules/TextBox';
+import { getDatabase, ref, push, set, onValue, get } from "firebase/database";
+import Treasurer from '../Treasurer';
 
 const Schedule = ({navigation, route}) => {
   const {uid} = route.params 
+  const db = getDatabase();
+  const [dataPresiden, setDataPresiden] = useState('')
+  const [results, setResultsArray] = useState([])
+
+  useEffect(() => {
+    const votingRef = ref(db, `voting/${uid}`)
+    onValue(votingRef, snapshot => {
+      if (snapshot.exists()){
+        const data = snapshot.val()
+        const resultsArray = [];
+        Object.keys(data).map(key => {
+          resultsArray.push(data[key])
+        })
+        setResultsArray(resultsArray);
+        console.log(resultsArray)
+      }
+    })
+  }, [])
+  
 
   const homeButtonStyle = {
     // backgroundColor: 'blue',
@@ -70,12 +91,37 @@ const Schedule = ({navigation, route}) => {
       <View style={styles.contentWrapper}>
       <Gap height={24} />
       <Text style={styles.textStyle}>
-        SCHEDULE
+        VOTING INFORMATION
       </Text>
       <Gap height={44} />
-      <TextBox
+      {/* <TextBox
       textBoxStyle={textBoxStyle}
+      // {dataPresiden}
       />
+      {
+        results.map( item =>(
+          <PlainText label={item.pilihanPresiden} label2={item.pilihanWakilPresiden}/>
+        ))
+      } */}
+      <TextBox textBoxStyle={textBoxStyle}>
+      {
+          results.map(item => (
+          <PlainText  label={`Presiden : ${item.pilihanPresiden}`} 
+          label2={`Wakil Presiden : ${item.pilihanWakilPresiden}`}
+           Secretary={`Sekertaris : ${item.pilihanSecretary}`} 
+           Treasurer={`Bendahara : ${item.pilihanTreasurer}`}
+           Parlementary={`Parlementari : ${item.pilihanParlementary}`}
+           Sport={`Olaraga : ${item.pilihanSport}`} 
+           Health={`Kesehatan : ${item.pilihanHealth}`}
+           Spiritual={`Kerohanian : ${item.pilihanSpiritual}`}
+           EditorGema={`Editor Gema : ${item.pilihanEditorGema}`}
+           Argiculture={`Pertanian : ${item.pilihanAgriculture}`} 
+           PublicRelation={`Public Relation : ${item.pilihanPublicRelation}`}
+           Education={`Pendidikan : ${item.Education}`} 
+          />
+        ))
+      }
+      </TextBox>
       <Gap height={42} />
       </View>
       </ScrollView>

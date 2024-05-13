@@ -68,7 +68,26 @@ const Profile = ({navigation, route}) => {
     marginVertical: -10,
   };
   const namaStyle = {
-    color: 'white'
+    color: 'white',
+    textAlign : 'center',
+    fontSize : 50,
+    paddingBottom : 20
+  }
+  const nimstyle = {
+    textAlign : 'center',
+    color : 'white',
+    fontSize : 50,
+    paddingBottom : 20
+
+
+  }
+  const fakultasStyle = {
+    textAlign : 'center',
+    color : 'white',
+    fontSize : 50,
+    paddingBottom : 20
+
+
   }
 
   return (
@@ -90,6 +109,9 @@ const Profile = ({navigation, route}) => {
       fakultas={fakultas}
       nim={nim}
       namaStyle={namaStyle}
+      nimStyle={nimstyle}
+      fakultasStyle={fakultasStyle}
+
       />
       <Gap height={42} />
       </View>
@@ -147,6 +169,7 @@ const styles = StyleSheet.create({
   },
   line: {
     borderWidth: 1,
+    
 
   },
 });

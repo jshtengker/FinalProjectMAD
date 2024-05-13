@@ -16,21 +16,22 @@ export default TextInput;
 const styles = StyleSheet.create({
   label: {
     fontFamily: 'Poppins-Regular',
-    fontSize: 10,
+    fontSize: 20,
     fontWeight: '500',
     color: '#FFFFFF',
-    marginBottom: 6,
-    marginLeft: 35,
+    marginBottom: 5,
+    marginLeft: 50,
   },
   textInput: {
     borderColor: '#FFFFFF',
     width: 260,
     borderRadius: 10,
-    paddingLeft: 10,
+    paddingLeft: 20,
     paddingVertical: 10,
     fontFamily: 'Poppins-Regular',
-    fontSize: 12,
+    fontSize: 14,
     backgroundColor: '#FFFFFF',
-    marginLeft: 25,
+    marginLeft: 45,
+    marginBottom: 15
   },
 });

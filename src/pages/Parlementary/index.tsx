@@ -1,12 +1,27 @@
 /* eslint-disable prettier/prettier */
-import {StyleSheet, Text, View, ScrollView, TextInput, ScrollViewBase} from 'react-native';
-import React from 'react';
-import {PageHeader, Gap, Button} from '../../components';
+import {StyleSheet, Text, View, ScrollView, ScrollViewBase} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {PageHeader, Gap, Button, TextInput} from '../../components';
 import PageFooter from '../../components/molecules/PageFooter';
 import TextBox from '../../components/molecules/TextBox';
+import { getDatabase, ref, push, set } from "firebase/database";
+
 
 const Parlementary = ({navigation, route}) => {
   const {uid} = route.params;
+    const [pilihanParlementary, setPilihanParlementary] = useState('')
+  
+    const onSubmit = () => {
+      const data = {
+        pilihanParlementary: pilihanParlementary,
+      }
+  
+      const db = getDatabase();
+      const votingRef = ref(db, `voting/${uid}`);
+      const newVotingRef = push(votingRef);
+      set(newVotingRef, data)
+      // ...
+    }
 
   const homeButtonStyle = {
     // backgroundColor: 'blue',
@@ -61,12 +76,19 @@ const Parlementary = ({navigation, route}) => {
        PARLEMENTARY CANDIDATE 
       </Text>
       <Gap height={20} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="PRESIDENT" onSubmit={() => navigation.navigate('Home')} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="VICE PRESIDENT" onSubmit={() => navigation.navigate('Home')} />
-      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="SECRETARY" onSubmit={() => navigation.navigate('Home')} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="NAME" onSubmit={() => navigation.navigate('Home')} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="NAME" onSubmit={() => navigation.navigate('Home')} />
+      <Button buttonStyle={buttonStyle} textButtonStyle={textButtonStyle} label="NAME" onSubmit={() => navigation.navigate('Home')} />
     
       <Gap height={15} />
-      <Button buttonStyle2={buttonStyle2}  label="Vote" onSubmit={() => navigation.navigate('')} />
+      <TextInput
+          label="Nama Kandidat"
+          placeholder="Masukkan nama kandidat Parlementary"
+          value={pilihanParlementary}
+          onChangeText={value => setPilihanParlementary(value)}
+
+        />
+      <Button buttonStyle2={buttonStyle2}  label="Vote" onSubmit={onSubmit} />      
       </View>
       </ScrollView>
       <Gap height={5} />

@@ -50,6 +50,26 @@ const Home = ({navigation, route}) => {
     marginTop: 0,
     marginBottom: 20,
   }
+  const news1Style = {
+    textAlign: "center",
+    fontSize: 30
+
+  }
+  const news2Style = {
+    textAlign: "center",
+    fontSize: 30
+
+  }
+  const news3Style = {
+    textAlign: "center",
+    fontSize: 30
+
+  }
+  const news4Style = {
+    textAlign: "center",
+    fontSize: 30
+
+  }
 
   return (
     <View style={styles.container}>
@@ -64,12 +84,13 @@ const Home = ({navigation, route}) => {
         NEWS
       </Text>
       <Gap height={44} />
-      <TextBox/>
-      <TextBox/>
-      <TextBox/>
-      <TextBox/>
+      <TextBox news1Style={news1Style} label="Informasi Seputar BEM"/>
+      <TextBox news2Style={news2Style} label1="Informasi UNKLAB"/>
+      {/* <TextBox news3Style={news3Style} label2="Informasi "/> */}
+      {/* <TextBox news4Style={news4Style} label3="Informasi Seputar BEM"/> */}
+
       <Gap height={15} />
-      <Button buttonStyle={buttonStyle}  label="Vote" onSubmit={() => navigation.navigate('Candidate', {uid:uid})} />
+      <Button buttonStyle={buttonStyle}  label="Go Vote" onSubmit={() => navigation.navigate('Candidate', {uid:uid})} />
       </View>
       </ScrollView>
       <Gap height={5} />

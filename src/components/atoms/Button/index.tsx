@@ -47,13 +47,14 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 8,
     width: 200,
-    marginLeft: 60,
+    marginLeft: 75,
     marginTop: 0,
     marginBottom: 20,
   }),
   label: textColor => ({
     textAlign: 'center',
     color: textColor,
-    fontSize: 20
+    fontSize: 20,
+    
   }),
 });
